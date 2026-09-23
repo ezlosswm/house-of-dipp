@@ -6,9 +6,10 @@
 
 	import { menuCategory, menuItems } from '$lib/menu';
 
-	import PlusCircleIcon from 'phosphor-svelte/lib/PlusCircleIcon';
+	import ShoppingCartSimpleIcon from 'phosphor-svelte/lib/ShoppingCartSimpleIcon';
 	import CaretRightIcon from 'phosphor-svelte/lib/CaretRightIcon';
 	import CaretLeftIcon from 'phosphor-svelte/lib/CaretLeftIcon';
+	import WhatsappLogoIcon from 'phosphor-svelte/lib/WhatsappLogoIcon';
 
 	import SearchInput from '$lib/components/SearchInput.svelte';
 
@@ -28,8 +29,8 @@
 
 <Hero />
 
-<main class="mx-auto w-full max-w-2xl px-8">
-	<div class="relative space-y-6">
+<main class="mx-auto w-full max-w-2xl px-4 sm:px-8">
+	<div class="space-y-6">
 		<section aria-labelledby="category-heading">
 			<SectionHeader.Root id="category-heading">
 				<SectionHeader.Title>Category</SectionHeader.Title>
@@ -63,7 +64,7 @@
 							role="group"
 							aria-roledescription="slide"
 							aria-label="{index + 1} of {menuCategory.length}"
-							class="h-25 min-w-25 snap-start "
+							class="h-25 min-w-25 snap-start"
 						>
 							{#snippet image()}
 								<img src={category.img} alt={category.title} class="size-full object-contain" />
@@ -96,11 +97,9 @@
 				<SearchInput bind:value={search} />
 			</SectionHeader.Root>
 
-			<div
-				class="grid w-full grid-cols-2 items-center justify-center gap-3 bg-blue-300 sm:grid-cols-3"
-			>
+			<div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
 				{#each menuItems as item (item.id)}
-					<Card.Root class="w-full min-w-43.75">
+					<Card.Root class="w-full min-w-0">
 						{#snippet image()}
 							<img src={item.img} alt={item.title} class="size-full object-contain" />
 						{/snippet}
@@ -114,15 +113,23 @@
 							</Card.Content>
 						</div>
 
-						<Button class="w-full">
-							<PlusCircleIcon />
+						<Card.Action>
+							<ShoppingCartSimpleIcon />
 							Add to cart
-						</Button>
+						</Card.Action>
 					</Card.Root>
 				{/each}
 			</div>
 		</section>
+	</div>
 
-		<Button class="mb-24 w-full">Order Now</Button>
+	<div class="sticky bottom-8 z-10 my-8">
+		<Button size="lg" class="w-full">
+			<WhatsappLogoIcon aria-hidden="true" />
+
+			<span> View Cart </span>
+			•
+			<span> 1 item </span>
+		</Button>
 	</div>
 </main>

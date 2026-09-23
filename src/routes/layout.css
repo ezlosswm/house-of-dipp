@@ -9,7 +9,14 @@
 	--rust-500: oklch(0.692 0.192 44.7);
 	--rust-600: oklch(0.636 0.199 39.1);
 	--rust-700: oklch(0.559 0.183 36.5);
+	--rust-800: oklch(0.48 0.155 36);
 	--rust-950: oklch(0.263 0.078 34.3);
+
+	--border-subtle: oklch(0.9 0.018 65);
+	--border-default: oklch(0.84 0.028 60);
+	--border-strong: oklch(0.68 0.065 45);
+
+	--surface-hover: oklch(0.965 0.025 68);
 
 	--muted: oklch(0.955 0.014 67);
 	--muted-foreground: oklch(0.48 0.025 32);
@@ -42,18 +49,23 @@
 	--color-muted-foreground: var(--muted-foreground);
 
 	--color-primary: var(--rust-700);
-	--color-primary-hover: var(--rust-600);
+	--color-primary-hover: var(--rust-800);
 	--color-secondary: var(--rust-200);
 
-	--color-accent: var(--rust-200);
-	--color-accent-hover: var(--rust-100);
+	--color-border: var(--border-default);
+	--color-border-subtle: var(--border-subtle);
+	--color-border-strong: var(--border-strong);
+
+	--color-surface-hover: var(--surface-hover);
+
+	--color-accent: var(--rust-100);
+	--color-accent-hover: var(--rust-200);
 
 	--color-info: var(--info);
 	--color-info-subtle: var(--info-subtle);
 	--color-info-foreground: var(--info-foreground);
 
 	--color-card: var(--color-white);
-	--color-border: var(--muted-foreground);
 	--color-input: var(--muted);
 
 	--color-success: var(--success);

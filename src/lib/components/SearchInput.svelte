@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { cubicIn, cubicOut } from 'svelte/easing';
 
 	import Button from '$lib/components/ui/button/button.svelte';
@@ -25,7 +25,7 @@
 	<div
 		in:fly={{ y: -10, duration: 450, easing: cubicIn }}
 		out:fly={{ y: -10, duration: 450, easing: cubicOut }}
-		class="relative w-full rounded-xl border bg-white p-2"
+		class="relative w-full rounded-xl border border-border bg-white p-2 hover:border-border-strong"
 	>
 		<div class="absolute top-1/2 -translate-y-1/2 pl-1">
 			<MagnifyingGlassIcon />

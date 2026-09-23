@@ -9,7 +9,7 @@
 	aria-label="Card"
 	data-slot="card"
 	class={cn(
-		'flex flex-col items-center gap-2 overflow-hidden rounded-xl border border-border/65 bg-white p-2',
+		'flex flex-col items-center gap-2 overflow-hidden rounded-xl border border-border bg-white p-2 hover:border-border-strong',
 		className
 	)}
 	{...restProps}

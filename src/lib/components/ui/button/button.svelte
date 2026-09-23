@@ -5,34 +5,25 @@
 
 	export const buttonVariants = tv({
 		base: `
-		cursor-pointer
-		flex w-auto items-center justify-center gap-1 rounded-sm
-		font-medium
-		tracking-[-0.03em] transition-all
-		outline-none
-		focus-visible:ring-2
-		focus-visible:ring-muted-foreground/50
-		focus-visible:ring-offset-2
-		disabled:pointer-events-none
-		disabled:opacity-50 text-sm 
-		active:scale-99
+		inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5
+		rounded-sm text-sm font-medium tracking-[-0.03em]
+		active:scale-[0.99]
+		transition-colors outline-none
+		focus-visible:ring-2 focus-visible:ring-primary
+		focus-visible:ring-offset-2 focus-visible:ring-offset-background
+		disabled:pointer-events-none disabled:opacity-50
 		[&>svg]:shrink-0
 	`,
 		variants: {
 			variant: {
-				default: 'bg-primary text-background hover:bg-primary/90',
-				secondary: 'bg-accent hover:bg-accent-hover',
-				icon: `
-				rounded-full
-				border border-muted-foreground
-				bg-background text-foreground
-				hover:bg-white
-			`
+				default: 'bg-primary text-background hover:bg-primary-hover',
+				secondary: 'bg-accent text-foreground hover:bg-accent-hover',
+				icon: 'rounded-full border border-border bg-background text-foreground hover:bg-surface-hover'
 			},
 			size: {
-				default: 'px-3 py-1 [&>svg]:size-4',
-				lg: 'px-5 py-1 [&>svg]:size-5',
-				icon: 'size-8 p-0'
+				default: 'h-7 px-4 [&>svg]:size-4',
+				lg: 'h-10 px-5 [&>svg]:size-5',
+				icon: 'size-10 p-0 [&>svg]:size-5'
 			}
 		},
 		defaultVariants: {

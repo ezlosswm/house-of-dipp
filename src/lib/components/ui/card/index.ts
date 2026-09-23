@@ -4,6 +4,7 @@ import type { HTMLAttributes } from 'svelte/elements';
 import Root from './card.svelte';
 import Header from './card-header.svelte';
 import Content from './card-content.svelte';
+import Action from './card-action.svelte';
 
 export interface CardBaseProps extends HTMLAttributes<HTMLDivElement> {
 	class?: string;
@@ -16,4 +17,4 @@ export interface CardProps extends CardBaseProps {
 export type CardHeaderProps = CardBaseProps;
 export type CardContentProps = CardBaseProps;
 
-export { Root, Header, Content };
+export { Root, Header, Content, Action };
