@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as Card from '$lib/components/ui/card/index';
 	import * as SectionHeader from '$lib/components/section/index';
+	import * as Drawer from '$lib/components/ui/drawer/index';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Hero from '$lib/components/Hero.svelte';
 
@@ -113,10 +114,21 @@
 							</Card.Content>
 						</div>
 
-						<Card.Action>
+						<Drawer.Root>
+							<Drawer.Trigger>
+								<ShoppingCartSimpleIcon />
+								Add to cart
+							</Drawer.Trigger>
+
+							<Drawer.Content>
+								<Drawer.Close>Close</Drawer.Close>
+								Hello World
+							</Drawer.Content>
+						</Drawer.Root>
+						<!-- <Card.Action>
 							<ShoppingCartSimpleIcon />
 							Add to cart
-						</Card.Action>
+						</Card.Action> -->
 					</Card.Root>
 				{/each}
 			</div>
