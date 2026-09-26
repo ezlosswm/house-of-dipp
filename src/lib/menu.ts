@@ -73,3 +73,73 @@ export const menuItems = [
 		price: '$8.00'
 	}
 ];
+
+const wingSauceOpts: SauceOpts = [
+	'Spicy BBQ',
+	'Regular BBQ',
+	'Honey Mustard',
+	'Buffalo',
+	'Ranch',
+	'Naked'
+];
+
+const wingsAddOnOpts: Map<string, number> = new Map([
+	['Extra fies', 2],
+	['Extra sauce', 2]
+]);
+
+const fingersAddOnOpts: Map<string, number> = new Map([['Extra fies', 2]]);
+
+export const menuItemList: FoodItem[] = [
+	{
+		id: 1,
+		name: 'Chicken Wings 6pc',
+		category: 'Finger Foods',
+		image: wings,
+		price: 12.0,
+		sauceOptions: wingSauceOpts,
+		addOnOptions: wingsAddOnOpts
+	},
+	{
+		id: 2,
+		name: 'Chicken Wings 10pc',
+		category: 'Finger Foods',
+		image: wings,
+		price: 18.0,
+		sauceOptions: wingSauceOpts,
+		addOnOptions: wingsAddOnOpts
+	},
+	{
+		id: 3,
+		name: 'Chicken Wings 15pc',
+		category: 'Finger Foods',
+		image: wings,
+		price: 28.0,
+		sauceOptions: wingSauceOpts,
+		addOnOptions: wingsAddOnOpts
+	},
+	{
+		id: 4,
+		name: 'Chicken Fingers 6pc',
+		category: 'Finger Foods',
+		image: fingers,
+		price: 12.0,
+		addOnOptions: fingersAddOnOpts
+	},
+	{
+		id: 5,
+		name: 'Chicken Fingers 10pc',
+		category: 'Finger Foods',
+		image: fingers,
+		price: 18.0,
+		addOnOptions: fingersAddOnOpts
+	},
+	{
+		id: 6,
+		name: 'Chicken Fingers 15pc',
+		category: 'Finger Foods',
+		image: fingers,
+		price: 28.0,
+		addOnOptions: fingersAddOnOpts
+	}
+];
