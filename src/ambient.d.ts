@@ -2,14 +2,19 @@ declare global {
 	type FoodItem = {
 		id: number;
 		name: string;
-		category: string;
-		image: string;
+		category: FoodCategory;
 		price: number;
-		sauceOptions?: string[];
+		options?: Opts;
 		addOnOptions?: Map<string, number>;
+		notes?: string;
 	};
 
-	type SauceOpts = string[];
+	type Opts = string[];
+
+	type FoodCategory = {
+		name: string;
+		image: string;
+	};
 }
 
 export {};

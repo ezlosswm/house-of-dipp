@@ -6,7 +6,7 @@
 
 <h4
 	aria-label="Card title"
-	class="w-full text-sm tracking-[-3.5%] {className ?? ''}"
+	class="w-full text-sm font-semibold tracking-[-1%] {className ?? ''}"
 	{...restProps}
 >
 	{@render children?.()}

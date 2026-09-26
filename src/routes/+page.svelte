@@ -5,9 +5,10 @@
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Hero from '$lib/components/Hero.svelte';
 
-	import { menuCategory, menuItems } from '$lib/menu';
+	import { menuCategory, menuItemList } from '$lib/menu';
+	import { formatPrice } from '$lib';
 
-	import ShoppingCartSimpleIcon from 'phosphor-svelte/lib/ShoppingCartSimpleIcon';
+	import PlusIcon from 'phosphor-svelte/lib/PlusIcon';
 	import CaretRightIcon from 'phosphor-svelte/lib/CaretRightIcon';
 	import CaretLeftIcon from 'phosphor-svelte/lib/CaretLeftIcon';
 	import WhatsappLogoIcon from 'phosphor-svelte/lib/WhatsappLogoIcon';
@@ -68,12 +69,12 @@
 							class="h-25 min-w-25 snap-start"
 						>
 							{#snippet image()}
-								<img src={category.img} alt={category.title} class="size-full object-contain" />
+								<img src={category.image} alt={category.name} class="size-full object-contain" />
 							{/snippet}
 							<Card.Header
 								class="w-full text-center text-xs leading-tight font-bold tracking-[-0.035em]"
 							>
-								{category.title}</Card.Header
+								{category.name}</Card.Header
 							>
 						</Card.Root>
 					{/each}
@@ -99,24 +100,29 @@
 			</SectionHeader.Root>
 
 			<div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-				{#each menuItems as item (item.id)}
+				{#each menuItemList as item (item.id)}
 					<Card.Root class="w-full min-w-0">
 						{#snippet image()}
-							<img src={item.img} alt={item.title} class="size-full object-contain" />
+							<img src={item.category.image} alt={item.name} class="size-full object-contain" />
 						{/snippet}
 						<div class="w-full space-y-1">
-							<Card.Header class="text-xs font-medium">{item.title}</Card.Header>
+							<Card.Header class="text-sm font-medium"
+								>{item.name}
+								<span class="text-xs font-normal">
+									{item.notes}
+								</span></Card.Header
+							>
 							<Card.Content>
 								<div class="flex w-full items-center justify-between">
-									<p class="text-xs">{item.category}</p>
-									<p class="font-medium">{item.price}</p>
+									<p class="text-xs">{item.category.name}</p>
+									<p class="font-medium">{formatPrice(item.price)}</p>
 								</div>
 							</Card.Content>
 						</div>
 
 						<Drawer.Root>
 							<Drawer.Trigger>
-								<ShoppingCartSimpleIcon />
+								<PlusIcon />
 								Add to cart
 							</Drawer.Trigger>
 
