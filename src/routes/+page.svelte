@@ -7,17 +7,19 @@
 
 	import { menuCategory, menuItemList } from '$lib/menu';
 	import { formatPrice } from '$lib';
+	import { useCart } from '$lib/cart-context.svelte';
 
 	import PlusIcon from 'phosphor-svelte/lib/PlusIcon';
 	import CaretRightIcon from 'phosphor-svelte/lib/CaretRightIcon';
 	import CaretLeftIcon from 'phosphor-svelte/lib/CaretLeftIcon';
-	import WhatsappLogoIcon from 'phosphor-svelte/lib/WhatsappLogoIcon';
+	import ShoppingCartSimpleIcon from 'phosphor-svelte/lib/ShoppingCartSimpleIcon';
 
 	import SearchInput from '$lib/components/SearchInput.svelte';
 	import Cart from '$lib/components/Cart.svelte';
 
+	const cart = useCart();
+
 	let containerRef: HTMLDivElement | null = $state(null);
-	let search = $state('');
 
 	function scroll(direction: 'left' | 'right') {
 		if (!containerRef) return;
@@ -29,11 +31,11 @@
 		});
 	}
 
-	// let cart: FoodItem[] = []
-	// function addToCart(id: number) {
-	// 	let newItem = menuItemList.find((item) => item.id === id)
-	// 	cart.push(newItem!)
-	// }
+	let search = $state('');
+
+	let displayedMenu = $derived(
+		menuItemList.filter((item) => item.name.toLowerCase().includes(search.trim().toLowerCase()))
+	);
 </script>
 
 <Hero />
@@ -107,7 +109,7 @@
 			</SectionHeader.Root>
 
 			<div class="grid grid-cols-2 gap-3 sm:grid-cols-3">
-				{#each menuItemList as item (item.id)}
+				{#each displayedMenu as item (item.id)}
 					<Card.Root class="w-full min-w-0">
 						{#snippet image()}
 							<img src={item.category.image} alt={item.name} class="size-full object-contain" />
@@ -134,7 +136,14 @@
 							</Drawer.Trigger>
 
 							<Drawer.Content>
-								<Drawer.Close />
+								<div class="relative">
+									<Drawer.Close size="lg" class="absolute top-4 right-0" />
+									<img
+										class="max-h-62.5 w-full object-contain"
+										src={item.category.image}
+										alt={item.name}
+									/>
+								</div>
 
 								<Cart {item} />
 							</Drawer.Content>
@@ -146,12 +155,38 @@
 	</div>
 
 	<div class="sticky bottom-8 z-10 my-8">
-		<Button size="lg" class="w-full">
-			<WhatsappLogoIcon aria-hidden="true" />
+		<Drawer.Root>
+			<Drawer.Trigger>
+				<ShoppingCartSimpleIcon aria-hidden="true" />
 
-			<span> View Cart </span>
-			•
-			<span> 1 item </span>
-		</Button>
+				<span> View Cart </span>
+				•
+				<span> {formatPrice(cart.total())} </span>
+			</Drawer.Trigger>
+			<Drawer.Content>
+				<div class="flex flex-col gap-2">
+					{#each cart.lines() as cartItem (cartItem.item.name)}
+						<div class="flex items-baseline justify-between gap-2">
+							<div>
+								<img class="size-10" src={cartItem.item.category.image} alt={cartItem.item.name} />
+								<p>{cartItem.item.name}</p>
+							</div>
+							<div class="ml-auto flex gap-4">
+								<p>Price: {cartItem.item.price}</p>
+								<p>Quantity: {cartItem.quantity}</p>
+							</div>
+						</div>
+					{/each}
+
+					<h4 class="text-lg font-semibold">
+						Total:
+						<span>{formatPrice(cart.total())}</span>
+					</h4>
+				</div>
+				<div class="sticky bottom-24 z-10">
+					<Button class="w-full">Order Now</Button>
+				</div>
+			</Drawer.Content>
+		</Drawer.Root>
 	</div>
 </main>

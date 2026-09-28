@@ -13,6 +13,17 @@
 			sheet.close();
 		}
 	}
+
+	$effect(() => {
+		if (!sheet.open) return;
+
+		const previousOverflow = document.body.style.overflow;
+		document.body.style.overflow = 'hidden';
+
+		return () => {
+			document.body.style.overflow = previousOverflow;
+		};
+	});
 </script>
 
 <svelte:window on:keydown={handleEscKeyDown} />
@@ -31,7 +42,7 @@
 		role="dialog"
 		aria-modal="true"
 		class={cn(
-			'fixed inset-x-0 bottom-0 z-50 h-[calc(100dvh-5rem)] w-screen rounded-t-4xl border-t-2 border-border bg-background px-4 pt-8 pb-4 sm:p-8',
+			'fixed inset-x-0 bottom-0 z-50 h-[calc(100dvh-5rem)] w-screen overflow-y-auto overscroll-contain rounded-t-4xl border-t-2 border-border bg-background px-4 pt-8 pb-4 sm:p-8',
 			className
 		)}
 	>

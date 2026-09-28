@@ -12,11 +12,11 @@
 </script>
 
 {#if !visible}
-	<Button onclick={() => (visible = !visible)} variant="icon" size="icon">
+	<Button onclick={() => (visible = !visible)} variant="ghost" size="icon">
 		<MagnifyingGlassIcon />
 	</Button>
 {:else}
-	<Button onclick={() => (visible = !visible)} variant="icon" size="icon">
+	<Button onclick={() => (visible = !visible)} variant="ghost" size="icon">
 		<XIcon />
 	</Button>
 {/if}
@@ -25,9 +25,9 @@
 	<div
 		in:fly={{ y: -10, duration: 450, easing: cubicIn }}
 		out:fly={{ y: -10, duration: 450, easing: cubicOut }}
-		class="relative w-full rounded-xl border border-border bg-white p-2 hover:border-border-strong"
+		class="relative w-full rounded-xl border border-border bg-white p-3 hover:border-border-strong"
 	>
-		<div class="absolute top-1/2 -translate-y-1/2 pl-1">
+		<div class="pointer-events-none absolute top-1/2 -translate-y-1/2 pl-1">
 			<MagnifyingGlassIcon />
 		</div>
 
@@ -38,8 +38,8 @@
 			placeholder="Burger, fried chicken, fries.."
 		/>
 
-		<div class="absolute top-1/2 right-0 -translate-y-1/2 pr-2">
-			<Button class="">Search</Button>
+		<div class="absolute top-1/2 right-0 -translate-y-1/2 pr-1.5">
+			<Button>Search</Button>
 		</div>
 	</div>
 {/if}

@@ -6,7 +6,7 @@
 	export const buttonVariants = tv({
 		base: `
 		inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5
-		rounded-sm text-sm font-medium tracking-[-3%]
+		rounded-[10px] text-sm font-medium tracking-[-3%]
 		active:scale-[0.99]
 		transition-colors outline-none
 		focus-visible:ring-2 focus-visible:ring-primary
@@ -18,8 +18,8 @@
 			variant: {
 				default: 'bg-primary text-background hover:bg-primary-hover',
 				secondary: 'bg-accent text-foreground hover:bg-accent-hover',
-				ghost: 'rounded-sm bg-transparent hover:bg-accent hover:text-muted-foreground',
-				outline: 'rounded-sm bg-transparent hover:bg-accent border border-border',
+				ghost: 'rounded-[10px] bg-transparent hover:bg-accent hover:text-muted-foreground',
+				outline: 'rounded-[10px] bg-transparent hover:bg-accent border border-border',
 				icon: 'rounded-full border border-border bg-background text-foreground hover:bg-surface-hover'
 			},
 			size: {
