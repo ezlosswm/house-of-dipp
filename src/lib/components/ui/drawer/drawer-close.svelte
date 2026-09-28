@@ -1,6 +1,8 @@
 <script lang="ts">
+	import XIcon from 'phosphor-svelte/lib/XIcon';
 	import { Button, type ButtonProps } from '$lib/components/ui/button/index';
 	import { cn } from '$lib/utils';
+
 	import { getSheetContext } from './sheet-context.svelte';
 
 	const sheet = getSheetContext();
@@ -11,13 +13,13 @@
 <Button
 	onclick={() => sheet.close()}
 	data-slot="drawer-button"
-	variant="icon"
+	variant="ghost"
 	class={cn('', className)}
 	{size}
 	{...restProps}
 >
 	{#if !children}
-		X
+		<XIcon />
 	{/if}
 
 	{@render children?.()}

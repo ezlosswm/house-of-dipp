@@ -14,6 +14,7 @@
 	import WhatsappLogoIcon from 'phosphor-svelte/lib/WhatsappLogoIcon';
 
 	import SearchInput from '$lib/components/SearchInput.svelte';
+	import Cart from '$lib/components/Cart.svelte';
 
 	let containerRef: HTMLDivElement | null = $state(null);
 	let search = $state('');
@@ -27,6 +28,12 @@
 			behavior: 'smooth'
 		});
 	}
+
+	// let cart: FoodItem[] = []
+	// function addToCart(id: number) {
+	// 	let newItem = menuItemList.find((item) => item.id === id)
+	// 	cart.push(newItem!)
+	// }
 </script>
 
 <Hero />
@@ -127,14 +134,11 @@
 							</Drawer.Trigger>
 
 							<Drawer.Content>
-								<Drawer.Close>Close</Drawer.Close>
-								Hello World
+								<Drawer.Close />
+
+								<Cart {item} />
 							</Drawer.Content>
 						</Drawer.Root>
-						<!-- <Card.Action>
-							<ShoppingCartSimpleIcon />
-							Add to cart
-						</Card.Action> -->
 					</Card.Root>
 				{/each}
 			</div>
