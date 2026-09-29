@@ -36,51 +36,6 @@ export const menuCategory: FoodCategory[] = [
 	}
 ];
 
-export const menuItems = [
-	{
-		id: 1,
-		title: 'Beef Burger',
-		img: burger,
-		category: 'Burgers',
-		price: '$12.00'
-	},
-	{
-		id: 2,
-		title: 'Chicken Strip Burger',
-		img: burger,
-		category: 'Burgers',
-		price: '$14.00'
-	},
-	{
-		id: 3,
-		title: 'Chicken Wings',
-		img: wings,
-		category: 'Finger Foods',
-		price: '$18.00'
-	},
-	{
-		id: 4,
-		title: 'Chicken Fingers',
-		img: fingers,
-		category: 'Finger Foods',
-		price: '$10.00'
-	},
-	{
-		id: 5,
-		title: 'Chicken Ceviche',
-		img: chickenceviche,
-		category: 'Finger Foods',
-		price: '$20.00'
-	},
-	{
-		id: 6,
-		title: 'Fries',
-		img: fries,
-		category: 'Fries',
-		price: '$8.00'
-	}
-];
-
 const wingSauceOpts: Opts = [
 	'Spicy BBQ',
 	'Regular BBQ',
@@ -386,7 +341,7 @@ export const menuItemList: FoodItem[] = [
 		id: 29,
 		name: 'Nacho Cheesy Fries',
 		category: {
-			name: 'Fries',
+			name: 'French Fries',
 			image: fries
 		},
 		price: 14
@@ -395,7 +350,7 @@ export const menuItemList: FoodItem[] = [
 		id: 30,
 		name: 'Plain Fries',
 		category: {
-			name: 'Fries',
+			name: 'French Fries',
 			image: fries
 		},
 		price: 14
@@ -404,7 +359,7 @@ export const menuItemList: FoodItem[] = [
 		id: 31,
 		name: 'Bacon Bites',
 		category: {
-			name: 'Fries',
+			name: 'French Fries',
 			image: fries
 		},
 		price: 12
@@ -413,7 +368,7 @@ export const menuItemList: FoodItem[] = [
 		id: 32,
 		name: 'Beef Cheesy Fries',
 		category: {
-			name: 'Fries',
+			name: 'French Fries',
 			image: fries
 		},
 		price: 12

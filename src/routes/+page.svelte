@@ -4,6 +4,10 @@
 	import * as Drawer from '$lib/components/ui/drawer/index';
 	import Button from '$lib/components/ui/button/button.svelte';
 	import Hero from '$lib/components/Hero.svelte';
+	import SearchInput from '$lib/components/SearchInput.svelte';
+	import Cart from '$lib/components/Cart.svelte';
+
+	import combomeal from '$lib/assets/combo-meal.png';
 
 	import { menuCategory, menuItemList } from '$lib/menu';
 	import { formatPrice } from '$lib';
@@ -13,9 +17,6 @@
 	import CaretRightIcon from 'phosphor-svelte/lib/CaretRightIcon';
 	import CaretLeftIcon from 'phosphor-svelte/lib/CaretLeftIcon';
 	import ShoppingCartSimpleIcon from 'phosphor-svelte/lib/ShoppingCartSimpleIcon';
-
-	import SearchInput from '$lib/components/SearchInput.svelte';
-	import Cart from '$lib/components/Cart.svelte';
 
 	const cart = useCart();
 
@@ -32,10 +33,21 @@
 	}
 
 	let search = $state('');
+	let selectedCategory = $state<string | null>(null);
 
 	let displayedMenu = $derived(
-		menuItemList.filter((item) => item.name.toLowerCase().includes(search.trim().toLowerCase()))
+		menuItemList.filter((item) => {
+			const matchSearch = item.name.toLowerCase().includes(search.trim().toLowerCase());
+
+			const matchCategory = selectedCategory === null || item.category.name === selectedCategory;
+
+			return matchSearch && matchCategory;
+		})
 	);
+
+	function filterByCategory(name: string) {
+		selectedCategory = selectedCategory === name ? null : name;
+	}
 </script>
 
 <Hero />
@@ -70,12 +82,29 @@
 					aria-label="Categories list"
 					class="smooth-scroll flex max-w-xl snap-x snap-mandatory scrollbar-none gap-2 overflow-x-auto lg:overflow-visible"
 				>
+					<Card.Root
+						role="group"
+						aria-roledescription="slide"
+						aria-pressed={selectedCategory === null}
+						onclick={() => (selectedCategory = null)}
+						class="h-25 min-w-25 cursor-pointer snap-start"
+					>
+						{#snippet image()}
+							<img src={combomeal} alt="Combo Meal" class="size-full object-contain" />
+						{/snippet}
+						<Card.Header
+							class="w-full text-center text-xs leading-tight font-bold tracking-[-0.035em]"
+						>
+							All</Card.Header
+						>
+					</Card.Root>
 					{#each menuCategory as category, index (index)}
 						<Card.Root
 							role="group"
 							aria-roledescription="slide"
 							aria-label="{index + 1} of {menuCategory.length}"
-							class="h-25 min-w-25 snap-start"
+							onclick={() => filterByCategory(category.name)}
+							class="h-25 min-w-25 cursor-pointer snap-start"
 						>
 							{#snippet image()}
 								<img src={category.image} alt={category.name} class="size-full object-contain" />
