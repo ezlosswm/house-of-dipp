@@ -1,14 +1,43 @@
 import { getContext, setContext } from 'svelte';
-
-type CartLine = {
-	item: FoodItem;
-	quantity: number;
-};
+import { CartItem } from '$lib/models/cart-item';
 
 const CART_KEY = Symbol('cart');
+const STORAGE_KEY = 'house-of-dipp-cart';
+
+function initCart(): CartItem[] {
+	if (typeof window === 'undefined') return [];
+
+	try {
+		const saved = localStorage.getItem(STORAGE_KEY);
+
+		if (!saved) return [];
+
+		const parsed = JSON.parse(saved);
+
+		return parsed.map(
+			(line: CartItemData) =>
+				new CartItem(
+					line.item,
+					line.quantity,
+					line.selectedOptions,
+					line.addOnOptions,
+					line.instructions
+				)
+		);
+	} catch (error) {
+		console.error('Failed to parse cart from localStorage: ', error);
+		return [];
+	}
+}
 
 export function provideCart() {
-	let lines = $state<CartLine[]>([]);
+	let lines = $state<CartItem[]>(initCart());
+
+	$effect(() => {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem(STORAGE_KEY, JSON.stringify($state.snapshot(lines)));
+		}
+	});
 
 	const cart = {
 		lines() {
@@ -20,16 +49,26 @@ export function provideCart() {
 		},
 
 		total() {
-			return lines.reduce((total, line) => total + line.item.price * line.quantity, 0);
+			let extraAmt = 0;
+			for (const line of lines) {
+				if (line.addOnOptions && line.addOnOptions.length > 0) {
+					extraAmt +=
+						line.addOnOptions.reduce((sum, addOn) => sum + addOn.price, 0) * line.quantity;
+				}
+			}
+
+			const baseTotal = lines.reduce((total, line) => total + line.item.price * line.quantity, 0);
+
+			return baseTotal + extraAmt;
 		},
 
-		add(item: FoodItem, quantity = 1) {
-			const existing = lines.find((line) => line.item.id === item.id);
+		add(cartItem: CartItem) {
+			const existing = lines.find((line) => line.item.id === cartItem.item.id);
 
 			if (existing) {
-				existing.quantity += quantity;
+				existing.quantity += cartItem.quantity;
 			} else {
-				lines.push({ item, quantity });
+				lines.push(cartItem);
 			}
 		},
 

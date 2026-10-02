@@ -196,13 +196,25 @@
 				<div class="flex flex-col gap-2">
 					{#each cart.lines() as cartItem (cartItem.item.name)}
 						<div class="flex items-baseline justify-between gap-2">
-							<div>
-								<img class="size-10" src={cartItem.item.category.image} alt={cartItem.item.name} />
-								<p>{cartItem.item.name}</p>
-							</div>
-							<div class="ml-auto flex gap-4">
-								<p>Price: {cartItem.item.price}</p>
-								<p>Quantity: {cartItem.quantity}</p>
+							<div class="flex items-center gap-1">
+								<img class="size-25" src={cartItem.item.category.image} alt={cartItem.item.name} />
+								<div class="space-y-3">
+									<div class="space-y-1">
+										<h4>{cartItem.item.name}</h4>
+										<div class="flex items-center gap-1">
+											<p class="text-xs text-muted-foreground">
+												{cartItem.selectedOptions}
+												{#if cartItem.addOnOptions.length > 0}
+													<span>with </span>
+													{#each cartItem.addOnOptions as addOn (addOn.name)}
+														<span>{addOn.name} </span>
+													{/each}
+												{/if}
+											</p>
+										</div>
+									</div>
+									<p>Price: {formatPrice(cartItem.item.price)}</p>
+								</div>
 							</div>
 						</div>
 					{/each}
@@ -212,8 +224,13 @@
 						<span>{formatPrice(cart.total())}</span>
 					</h4>
 				</div>
-				<div class="sticky bottom-24 z-10">
-					<Button class="w-full">Order Now</Button>
+				<div class="z-10">
+					<Button
+						onclick={() => {
+							cart.clear();
+						}}
+						class="w-full">Order Now</Button
+					>
 				</div>
 			</Drawer.Content>
 		</Drawer.Root>
