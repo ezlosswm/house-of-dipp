@@ -5,8 +5,22 @@ declare global {
 		category: FoodCategory;
 		price: number;
 		options?: Opts;
-		addOnOptions?: Map<string, number>;
+		addOnOptions?: AddOn[];
+		addOn?: AddOn[];
 		notes?: string;
+	};
+
+	type CartItemData = {
+		item: FoodItem;
+		quantity: number;
+		selectedOptions: string;
+		addOnOptions: AddOn[];
+		instructions: string;
+	};
+
+	type AddOn = {
+		name: string;
+		price: number;
 	};
 
 	type Opts = string[];

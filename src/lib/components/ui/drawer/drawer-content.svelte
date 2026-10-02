@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { MediaQuery } from 'svelte/reactivity';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { getSheetContext } from './sheet-context.svelte';
 	import { cn } from '$lib/utils';
 	import { fly, fade } from 'svelte/transition';
 
+	const desktop = new MediaQuery('(min-width: 768px)');
 	const sheet = getSheetContext();
 
 	let { children, class: className }: HTMLAttributes<HTMLDivElement> = $props();
@@ -38,11 +40,11 @@
 	></button>
 
 	<div
-		transition:fly={{ y: 500, duration: 750 }}
+		transition:fly={{ x: desktop.current ? 500 : 0, y: desktop.current ? 0 : 500, duration: 750 }}
 		role="dialog"
 		aria-modal="true"
 		class={cn(
-			'fixed inset-x-0 bottom-0 z-50 h-[calc(100dvh-5rem)] w-screen overflow-y-auto overscroll-contain rounded-t-4xl border-t-2 border-border bg-background px-4 pt-8 pb-4 sm:p-8',
+			'fixed inset-x-0 bottom-0 z-50 max-h-[calc(100dvh-5rem)] w-full overflow-y-auto overscroll-contain rounded-t-4xl border-t-2 border-border bg-background px-4 pt-8 pb-4 shadow-lg sm:p-8 md:inset-y-0 md:right-0 md:left-auto md:h-dvh md:max-h-none md:w-150 md:rounded-none md:border',
 			className
 		)}
 	>

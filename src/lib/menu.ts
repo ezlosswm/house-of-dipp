@@ -45,27 +45,38 @@ const wingSauceOpts: Opts = [
 	'Naked'
 ];
 
-const wingsAddOnOpts: Map<string, number> = new Map([
-	['Extra fies', 2],
-	['Extra sauce', 2]
-]);
+const wingsAddOnOpts: AddOn[] = [
+	{
+		name: 'Extra fries',
+		price: 2
+	},
+	{
+		name: 'Extra sauce',
+		price: 2
+	}
+];
 
-const fingersAddOnOpts: Map<string, number> = new Map([['Extra fies', 2]]);
+const fingersAddOnOpts: AddOn[] = [
+	{
+		name: 'Extra fries',
+		price: 2
+	}
+];
 
-const burgerAddOnOpts: Map<string, number> = new Map([
-	['Extra bacon', 2],
-	['Extra cheese', 2]
-]);
+const burgerAddOnOpts: AddOn[] = [
+	{ name: 'Extra bacon', price: 2 },
+	{ name: 'Extra cheese', price: 2 }
+];
 
 const botanaOpts: Opts = ['Fries', 'Chips'];
 
 const friedChickenOpts: Opts = ['Leg', 'Breast'];
 
-const nachosAddOnOpts: Map<string, number> = new Map([
-	['Extra cheese', 2],
-	['Extra meat', 2],
-	['Both', 4]
-]);
+const nachosAddOnOpts: AddOn[] = [
+	{ name: 'Extra cheese', price: 2 },
+	{ name: 'Extra meat', price: 2 },
+	{ name: 'Both', price: 4 }
+];
 
 export const menuItemList: FoodItem[] = [
 	{
