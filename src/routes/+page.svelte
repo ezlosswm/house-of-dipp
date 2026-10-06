@@ -17,6 +17,7 @@
 	import CaretRightIcon from 'phosphor-svelte/lib/CaretRightIcon';
 	import CaretLeftIcon from 'phosphor-svelte/lib/CaretLeftIcon';
 	import ShoppingCartSimpleIcon from 'phosphor-svelte/lib/ShoppingCartSimpleIcon';
+	import Checkout from '$lib/components/Checkout.svelte';
 
 	const cart = useCart();
 
@@ -144,12 +145,7 @@
 							<img src={item.category.image} alt={item.name} class="size-full object-contain" />
 						{/snippet}
 						<div class="w-full space-y-1">
-							<Card.Header class="text-sm font-medium"
-								>{item.name}
-								<span class="text-xs font-normal">
-									{item.notes}
-								</span></Card.Header
-							>
+							<Card.Header class="text-sm font-medium">{item.name}</Card.Header>
 							<Card.Content>
 								<div class="flex w-full items-center justify-between">
 									<p class="text-xs">{item.category.name}</p>
@@ -192,46 +188,12 @@
 				•
 				<span> {formatPrice(cart.total())} </span>
 			</Drawer.Trigger>
-			<Drawer.Content>
-				<div class="flex flex-col gap-2">
-					{#each cart.lines() as cartItem (cartItem.item.name)}
-						<div class="flex items-baseline justify-between gap-2">
-							<div class="flex items-center gap-1">
-								<img class="size-25" src={cartItem.item.category.image} alt={cartItem.item.name} />
-								<div class="space-y-3">
-									<div class="space-y-1">
-										<h4>{cartItem.item.name}</h4>
-										<div class="flex items-center gap-1">
-											<p class="text-xs text-muted-foreground">
-												{cartItem.selectedOptions}
-												{#if cartItem.addOnOptions.length > 0}
-													<span>with </span>
-													{#each cartItem.addOnOptions as addOn (addOn.name)}
-														<span>{addOn.name} </span>
-													{/each}
-												{/if}
-											</p>
-										</div>
-									</div>
-									<p>Price: {formatPrice(cartItem.item.price)}</p>
-								</div>
-							</div>
-						</div>
-					{/each}
-
-					<h4 class="text-lg font-semibold">
-						Total:
-						<span>{formatPrice(cart.total())}</span>
-					</h4>
+			<Drawer.Content class="h-full">
+				<div class="mb-3 flex items-center justify-between">
+					<h2 class="text-xl font-bold">Cart</h2>
+					<Drawer.Close size="lg" class="" />
 				</div>
-				<div class="z-10">
-					<Button
-						onclick={() => {
-							cart.clear();
-						}}
-						class="w-full">Order Now</Button
-					>
-				</div>
+				<Checkout />
 			</Drawer.Content>
 		</Drawer.Root>
 	</div>
