@@ -25,7 +25,8 @@
 			size: {
 				default: 'p-2 [&>svg]:size-4',
 				lg: 'h-10 px-5 [&>svg]:size-5',
-				icon: 'size-10 p-0 [&>svg]:size-5'
+				icon: 'size-10 p-0 [&>svg]:size-5',
+				['icon-sm']: 'size-8 p-0 [&>svg]:size-4'
 			}
 		},
 		defaultVariants: {

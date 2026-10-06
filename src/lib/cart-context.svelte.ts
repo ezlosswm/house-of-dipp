@@ -1,5 +1,5 @@
 import { getContext, setContext } from 'svelte';
-import { CartItem } from '$lib/models/cart-item';
+import { CartItem } from '$lib/models/cart-item.svelte';
 
 const CART_KEY = Symbol('cart');
 const STORAGE_KEY = 'house-of-dipp-cart';
@@ -12,20 +12,12 @@ function initCart(): CartItem[] {
 
 		if (!saved) return [];
 
-		const parsed = JSON.parse(saved);
+		const parsed: CartItemData[] = JSON.parse(saved);
 
-		return parsed.map(
-			(line: CartItemData) =>
-				new CartItem(
-					line.item,
-					line.quantity,
-					line.selectedOptions,
-					line.addOnOptions,
-					line.instructions
-				)
-		);
+		return parsed.map(CartItem.fromJSON);
 	} catch (error) {
-		console.error('Failed to parse cart from localStorage: ', error);
+		console.error('Failed to parse cart from localStorage:', error);
+
 		return [];
 	}
 }
@@ -49,17 +41,7 @@ export function provideCart() {
 		},
 
 		total() {
-			let extraAmt = 0;
-			for (const line of lines) {
-				if (line.addOnOptions && line.addOnOptions.length > 0) {
-					extraAmt +=
-						line.addOnOptions.reduce((sum, addOn) => sum + addOn.price, 0) * line.quantity;
-				}
-			}
-
-			const baseTotal = lines.reduce((total, line) => total + line.item.price * line.quantity, 0);
-
-			return baseTotal + extraAmt;
+			return lines.reduce((total, line) => total + line.total, 0);
 		},
 
 		add(cartItem: CartItem) {
@@ -86,6 +68,28 @@ export function provideCart() {
 
 		clear() {
 			lines = [];
+		},
+
+		increment(itemId: number) {
+			const existing = lines.find((line) => line.item.id === itemId);
+
+			if (!existing) return;
+
+			existing.increment();
+		},
+
+		decrease(itemId: number) {
+			const existing = lines.find((line) => line.item.id === itemId);
+
+			if (!existing) return;
+
+			if (existing.quantity === 1) {
+				lines = lines.filter((line) => line.item.id !== itemId);
+
+				return;
+			}
+
+			existing.decrement();
 		}
 	};
 
