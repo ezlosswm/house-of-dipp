@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from './ui/button';
 
-	import { decrement, formatPrice } from '$lib';
+	import { formatPrice } from '$lib';
 	import { useCart } from '$lib/cart-context.svelte';
 	import { getSheetContext } from '$lib/components/ui/drawer/sheet-context.svelte';
 	import { CartItem } from '$lib/models/cart-item.svelte';
@@ -35,7 +35,7 @@
 	<div class="space-y-2">
 		<div class="flex items-center gap-1">
 			<div>
-				<h2 class="tex-xl leading-[1.2em] font-medium tracking-[-2%]">
+				<h2 class="text-xl leading-[1.2em] font-medium tracking-[-2%]">
 					{item.name}
 				</h2>
 				<p class="text-sm">{formatPrice(item.price)}</p>

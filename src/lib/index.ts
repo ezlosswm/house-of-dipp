@@ -4,7 +4,3 @@ export function formatPrice(amt: number | null): string {
 
 	return `$${amt.toFixed(2)}`;
 }
-
-export function decrement(quantity: number) {
-	quantity = Math.max(1, quantity - 1);
-}

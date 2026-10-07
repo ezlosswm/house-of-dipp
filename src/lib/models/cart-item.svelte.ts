@@ -34,8 +34,6 @@ export class CartItem {
 	get total() {
 		const addOnTotal = this.addOnOptions.reduce((total, addOn) => total + addOn.price, 0);
 
-		console.log('Add On Total: ', addOnTotal);
-
 		return (this.item.price + addOnTotal) * this.quantity;
 	}
 }
