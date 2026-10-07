@@ -6,7 +6,6 @@ declare global {
 		price: number;
 		options?: Opts;
 		addOnOptions?: AddOn[];
-		addOn?: AddOn[];
 		notes?: string;
 	};
 

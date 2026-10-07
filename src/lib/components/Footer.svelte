@@ -1,9 +1,6 @@
 <script>
-	let year = $state('');
-	$effect(() => {
-		const dateObj = new Date();
-		year = dateObj.getFullYear().toString();
-	});
+	const dateObj = new Date();
+	let year = dateObj.getFullYear().toString();
 
 	const businessDetails = {
 		name: 'House of Dipp',
@@ -31,14 +28,12 @@
 
 <footer class="border-t border-muted-foreground bg-accent-hover pt-4 pb-6">
 	<div class="space-y-4">
-		<h1 class="text-center text-sm leading-[1.2em] tracking-[1%]">
+		<address class="text-center text-sm leading-[1.2em] tracking-[1%]">
 			{businessDetails.address}
-		</h1>
+		</address>
 
 		<div class="mt-6 text-center">
-			<h2 class="mb-3 text-[12px] leading-[1.2em] font-semibold tracking-[1%]">
-				Hours of Operation
-			</h2>
+			<p class="mb-3 text-[12px] leading-[1.2em] font-semibold tracking-[1%]">Hours of Operation</p>
 
 			<div class="grid grid-cols-2 gap-3 text-xs">
 				<div>

@@ -1,13 +1,13 @@
-import burger from '$lib/assets/burger.png';
-import nachos from '$lib/assets/nachos.png';
-import wings from '$lib/assets/wings.png';
-import fries from '$lib/assets/fries.png';
-import fingers from '$lib/assets/fingers.png';
-import friedchicken from '$lib/assets/friedchicken.png';
-import tortas from '$lib/assets/tortas.png';
-import cheesedip from '$lib/assets/cheesedip.png';
-import botana from '$lib/assets/botana.png';
-import chickenceviche from '$lib/assets/botana.png';
+import burger from '$lib/assets/burger.webp';
+import nachos from '$lib/assets/nachos.webp';
+import wings from '$lib/assets/wings.webp';
+import fries from '$lib/assets/fries.webp';
+import fingers from '$lib/assets/fingers.webp';
+import friedchicken from '$lib/assets/friedchicken.webp';
+import tortas from '$lib/assets/tortas.webp';
+import cheesedip from '$lib/assets/cheesedip.webp';
+import botana from '$lib/assets/botana.webp';
+import chickenceviche from '$lib/assets/botana.webp';
 
 export const menuCategory: FoodCategory[] = [
 	{
@@ -77,7 +77,6 @@ const nachosAddOnOpts: AddOn[] = [
 	{ name: 'Extra meat', price: 2 },
 	{ name: 'Both', price: 4 }
 ];
-
 export const menuItemList: FoodItem[] = [
 	{
 		id: 1,
@@ -229,7 +228,7 @@ export const menuItemList: FoodItem[] = [
 		options: botanaOpts
 	},
 	{
-		id: 16,
+		id: 15,
 		name: 'Chicken Botana (Large)',
 		category: {
 			name: 'Finger Foods',
@@ -239,7 +238,7 @@ export const menuItemList: FoodItem[] = [
 		options: botanaOpts
 	},
 	{
-		id: 17,
+		id: 16,
 		name: 'Chicken Ceviche (Small)',
 		category: {
 			name: 'Finger Foods',
@@ -249,27 +248,27 @@ export const menuItemList: FoodItem[] = [
 		options: botanaOpts
 	},
 	{
-		id: 18,
+		id: 17,
 		name: 'Chicken Botana (Medium)',
 		category: {
 			name: 'Finger Foods',
-			image: chickenceviche
+			image: botana
 		},
 		price: 20,
 		options: botanaOpts
 	},
 	{
-		id: 19,
+		id: 18,
 		name: 'Chicken Botana (Large)',
 		category: {
 			name: 'Finger Foods',
-			image: chickenceviche
+			image: botana
 		},
 		price: 25,
 		options: botanaOpts
 	},
 	{
-		id: 20,
+		id: 19,
 		name: 'Fried Chicken',
 		category: {
 			name: 'Finger Foods',
@@ -279,7 +278,7 @@ export const menuItemList: FoodItem[] = [
 		options: friedChickenOpts
 	},
 	{
-		id: 22,
+		id: 20,
 		name: 'Chicken Torta',
 		category: {
 			name: 'Tortas',
@@ -289,7 +288,7 @@ export const menuItemList: FoodItem[] = [
 		notes: 'with Fries'
 	},
 	{
-		id: 23,
+		id: 21,
 		name: 'Ham Torta',
 		category: {
 			name: 'Tortas',
@@ -299,7 +298,7 @@ export const menuItemList: FoodItem[] = [
 		notes: 'with Fries'
 	},
 	{
-		id: 24,
+		id: 22,
 		name: 'Mixed Torta',
 		category: {
 			name: 'Tortas',
@@ -309,7 +308,7 @@ export const menuItemList: FoodItem[] = [
 		notes: 'with Fries'
 	},
 	{
-		id: 25,
+		id: 23,
 		name: 'Chicken Nachos',
 		category: {
 			name: 'Nachos',
@@ -319,7 +318,7 @@ export const menuItemList: FoodItem[] = [
 		addOnOptions: nachosAddOnOpts
 	},
 	{
-		id: 26,
+		id: 24,
 		name: 'Beef Nachos',
 		category: {
 			name: 'Nachos',
@@ -329,7 +328,7 @@ export const menuItemList: FoodItem[] = [
 		addOnOptions: nachosAddOnOpts
 	},
 	{
-		id: 27,
+		id: 25,
 		name: 'Supreme Chicken Nachos',
 		category: {
 			name: 'Nachos',
@@ -339,7 +338,7 @@ export const menuItemList: FoodItem[] = [
 		addOnOptions: nachosAddOnOpts
 	},
 	{
-		id: 28,
+		id: 26,
 		name: 'Supreme Beef Nachos',
 		category: {
 			name: 'Nachos',
@@ -349,7 +348,7 @@ export const menuItemList: FoodItem[] = [
 		addOnOptions: nachosAddOnOpts
 	},
 	{
-		id: 29,
+		id: 27,
 		name: 'Nacho Cheesy Fries',
 		category: {
 			name: 'French Fries',
@@ -358,7 +357,7 @@ export const menuItemList: FoodItem[] = [
 		price: 14
 	},
 	{
-		id: 30,
+		id: 28,
 		name: 'Plain Fries',
 		category: {
 			name: 'French Fries',
@@ -367,7 +366,7 @@ export const menuItemList: FoodItem[] = [
 		price: 14
 	},
 	{
-		id: 31,
+		id: 29,
 		name: 'Bacon Bites',
 		category: {
 			name: 'French Fries',
@@ -376,7 +375,7 @@ export const menuItemList: FoodItem[] = [
 		price: 12
 	},
 	{
-		id: 32,
+		id: 30,
 		name: 'Beef Cheesy Fries',
 		category: {
 			name: 'French Fries',
@@ -385,7 +384,7 @@ export const menuItemList: FoodItem[] = [
 		price: 12
 	},
 	{
-		id: 33,
+		id: 31,
 		name: 'Chips & Dip',
 		category: {
 			name: 'Other',
@@ -395,7 +394,7 @@ export const menuItemList: FoodItem[] = [
 		notes: '& up'
 	},
 	{
-		id: 34,
+		id: 32,
 		name: 'Kids Meal',
 		category: {
 			name: 'Other',
@@ -405,7 +404,7 @@ export const menuItemList: FoodItem[] = [
 		notes: 'comes with?'
 	},
 	{
-		id: 35,
+		id: 33,
 		name: 'Kids Meal with Juice',
 		category: {
 			name: 'Other',
@@ -415,7 +414,7 @@ export const menuItemList: FoodItem[] = [
 		notes: 'comes with?'
 	},
 	{
-		id: 36,
+		id: 34,
 		name: 'Order of fries',
 		category: {
 			name: 'Other',
