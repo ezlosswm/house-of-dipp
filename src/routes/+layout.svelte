@@ -14,17 +14,16 @@
 	let { children } = $props();
 
 	const BUSINESS_NAME = 'House of Dipp';
-	const host = $derived(page.url.host);
-	const SITE_URL = 'https://' + host;
+	const SITE_URL = $derived(`https://${page.url.host}`);
 	const BUSINESS_NUMBER = '+1234567890';
 
-	const schema = {
+	const schema = $derived({
 		'@context': 'https://schema.org',
 		'@type': 'Restaurant',
 		'@id': `${SITE_URL}/#restaurant`,
 		name: BUSINESS_NAME,
 		url: SITE_URL,
-		image: [`${SITE_URL}/houseofdipp.png`],
+		image: [new URL(houseofdipp, SITE_URL).href],
 		telephone: BUSINESS_NUMBER,
 		address: {
 			'@type': 'PostalAddress',
@@ -59,13 +58,9 @@
 				closes: '21:00'
 			}
 		]
-	};
+	});
 
 	const serializedSchema = $derived(JSON.stringify(schema).replace(/</g, '\\u003c'));
-
-	const schemaMarkup = $derived(
-		'<script type="application/ld+json">' + serializedSchema + '</' + 'script>'
-	);
 
 	provideCart();
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
@@ -90,7 +85,9 @@
 	<meta property="og:image" content={houseofdipp} />
 	<meta property="og:locale" content="en_BZ" />
 
-	{schemaMarkup}
+	<svelte:element this={'script'} type="application/ld+json">
+		{serializedSchema}
+	</svelte:element>
 
 	<link rel="icon" href={favicon} />
 </svelte:head>
