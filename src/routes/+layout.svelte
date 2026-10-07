@@ -6,10 +6,7 @@
 
 	import { dev } from '$app/environment';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
-
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
-
-	injectAnalytics({ mode: dev ? 'development' : 'production' });
 
 	import { provideCart } from '$lib/cart-context.svelte';
 	import { page } from '$app/state';
@@ -64,6 +61,12 @@
 		]
 	};
 
+	const serializedSchema = $derived(JSON.stringify(schema).replace(/</g, '\\u003c'));
+
+	const schemaMarkup = $derived(
+		'<script type="application/ld+json">' + serializedSchema + '</' + 'script>'
+	);
+
 	provideCart();
 	injectAnalytics({ mode: dev ? 'development' : 'production' });
 	injectSpeedInsights();
@@ -73,7 +76,7 @@
 	<title>{BUSINESS_NAME}</title>
 	<meta
 		name="description"
-		content="Order burgers, tortas, wings, nachos and fires from House of Dipp in Corozal, Belize. View the menu, hours and contact us on WhatsApp."
+		content="Order burgers, tortas, wings, nachos and fries from House of Dipp in Corozal, Belize. View the menu, hours and contact us on WhatsApp."
 	/>
 	<link rel="canonical" href={SITE_URL} />
 
@@ -87,7 +90,7 @@
 	<meta property="og:image" content={houseofdipp} />
 	<meta property="og:locale" content="en_BZ" />
 
-	{@html `<script type="application/ld+json">${JSON.stringify(schema)}<\/script>`}
+	{schemaMarkup}
 
 	<link rel="icon" href={favicon} />
 </svelte:head>
