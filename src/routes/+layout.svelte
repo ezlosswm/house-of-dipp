@@ -4,6 +4,13 @@
 	import houseofdipp from '$lib/assets/houseofdipp.webp';
 	import Footer from '$lib/components/Footer.svelte';
 
+	import { dev } from '$app/environment';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
+
 	import { provideCart } from '$lib/cart-context.svelte';
 	import { page } from '$app/state';
 
@@ -58,6 +65,8 @@
 	};
 
 	provideCart();
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
+	injectSpeedInsights();
 </script>
 
 <svelte:head>
