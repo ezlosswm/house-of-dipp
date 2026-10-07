@@ -1,22 +1,18 @@
-import { page } from '$app/state';
-export const prerender = true;
+import type { RequestHandler } from './$types';
 
-const host = $derived(page.url.host);
-const SITE_URL = 'https://' + host;
+export const GET: RequestHandler = ({ url }) => {
+	const SITE_URL = url.origin;
 
-export function GET() {
-	const body = `<?xml version="1.0" encoding="UTF-8"?>
+	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>${SITE_URL}/</loc>
-		<changefreq>weekly</changefreq>
-		<priority>1.0</priority>
 	</url>
-</urlset>`.trim();
+</urlset>`;
 
-	return new Response(body, {
+	return new Response(sitemap, {
 		headers: {
-			'Content-Type': 'application/xml; charset=utf-8'
+			'Content-Type': 'application/xml'
 		}
 	});
-}
+};
