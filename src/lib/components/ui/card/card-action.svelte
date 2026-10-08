@@ -5,6 +5,13 @@
 	let { children, class: className, variant, size, ...restProps }: ButtonProps = $props();
 </script>
 
-<Button data-slot="card-action" class={cn('w-full', className)} {variant} {size} {...restProps}>
+<Button
+	type="button"
+	data-slot="card-action"
+	class={cn('w-full', className)}
+	{variant}
+	{size}
+	{...restProps}
+>
 	{@render children?.()}
 </Button>

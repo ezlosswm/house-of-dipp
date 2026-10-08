@@ -1,8 +1,11 @@
 <script lang="ts">
+	import montserratUrl from '@fontsource-variable/montserrat/files/montserrat-latin-wght-normal.woff2?url';
+	import playfairUrl from '@fontsource-variable/playfair-display/files/playfair-display-latin-wght-normal.woff2?url';
+
 	import './layout.css';
 	import favicon from '$lib/assets/favicon.webp';
-	import houseofdipp from '$lib/assets/houseofdipp.webp';
 	import Footer from '$lib/components/Footer.svelte';
+	import { houseofdipp } from '$lib/menu';
 
 	import { dev } from '$app/environment';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
@@ -85,9 +88,12 @@
 	<meta property="og:image" content={houseofdipp} />
 	<meta property="og:locale" content="en_BZ" />
 
-	<svelte:element this={'script'} type="application/ld+json">
+	<svelte:element this={"script"} type="application/ld+json">
 		{serializedSchema}
 	</svelte:element>
+
+	<link rel="preload" href={montserratUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+	<link rel="preload" href={playfairUrl} as="font" type="font/woff2" crossorigin="anonymous" />
 
 	<link rel="icon" href={favicon} />
 </svelte:head>

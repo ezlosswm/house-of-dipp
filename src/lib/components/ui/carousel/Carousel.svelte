@@ -1,8 +1,7 @@
 <script lang="ts">
-	import * as Card from '$lib/components/ui/card/index';
 	import Button from '$lib/components/ui/button/button.svelte';
 
-	import combomeal from '$lib/assets/combo-meal.webp';
+	import { combomeal } from '$lib/menu';
 
 	import { menuCategory } from '$lib/menu';
 
@@ -51,41 +50,58 @@
 		aria-label="Categories list"
 		class="smooth-scroll flex max-w-xl snap-x snap-mandatory scrollbar-none gap-2 overflow-x-auto lg:overflow-visible"
 	>
-		<Card.Root
-			role="group"
-			aria-roledescription="slide"
+		<button
+			type="button"
 			aria-pressed={selectedCategory === null}
 			onclick={() => (selectedCategory = null)}
-			class="h-25 min-w-25 cursor-pointer snap-start"
+			class="flex size-25 shrink-0 cursor-pointer snap-start
+		flex-col items-center gap-2 overflow-hidden
+		rounded-xl border border-border bg-white p-2 text-foreground
+		focus-visible:outline-2 focus-visible:outline-offset-2
+		focus-visible:outline-primary"
 		>
-			{#snippet image()}
-				<img src={combomeal} alt="Combo Meal" class="size-full object-contain" />
-			{/snippet}
-			<Card.Header class="w-full text-center text-xs leading-tight font-bold tracking-[-0.035em]">
-				All</Card.Header
-			>
-		</Card.Root>
-		{#each menuCategory as category, index (index)}
-			<Card.Root
-				role="group"
+			<div class="min-h-0 w-full flex-1">
+				<enhanced:img src={combomeal} alt="" class="size-full object-contain" />
+			</div>
+
+			<span class="w-full shrink-0 text-center text-xs leading-tight font-bold tracking-[-0.035em]">
+				All
+			</span>
+		</button>
+		{#each menuCategory as category, index (category.name)}
+			<button
+				type="button"
 				aria-roledescription="slide"
-				aria-label="{index + 1} of {menuCategory.length}"
+				aria-label="{index + 2} of {menuCategory.length + 1}"
 				aria-pressed={selectedCategory === category.name}
 				onclick={() => filterByCategory(category.name)}
-				class="h-25 min-w-25 cursor-pointer snap-start"
+				class="flex size-25 shrink-0 cursor-pointer snap-start
+		flex-col items-center gap-2 overflow-hidden
+		rounded-xl border border-border bg-white p-2 text-foreground
+		focus-visible:outline-2 focus-visible:outline-offset-2
+		focus-visible:outline-primary"
 			>
-				{#snippet image()}
-					<img src={category.image} alt={category.name} class="size-full object-contain" />
-				{/snippet}
-				<Card.Header class="w-full text-center text-xs leading-tight font-bold tracking-[-0.035em]">
-					{category.name}</Card.Header
+				<div class="min-h-0 w-full flex-1">
+					<enhanced:img
+						src={category.image}
+						alt=""
+						width="100"
+						height="100"
+						class="size-full object-contain"
+					/>
+				</div>
+				<span
+					class="w-full shrink-0 text-center text-xs leading-tight font-bold tracking-[-0.035em]"
 				>
-			</Card.Root>
+					{category.name}</span
+				>
+			</button>
 		{/each}
 	</div>
 
 	<Button
 		class="sr-only absolute top-1/2 right-2 z-20 -translate-y-1/2 sm:hidden"
+		type="button"
 		aria-label="Scroll right"
 		aria-controls="category-carousel-list"
 		variant="icon"

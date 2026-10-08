@@ -54,7 +54,16 @@
 				{#each displayedMenu as item (item.id)}
 					<Card.Root class="w-full min-w-0">
 						{#snippet image()}
-							<img src={item.category.image} alt={item.name} class="size-full object-contain" />
+							<div class="aspect-square w-full">
+								<enhanced:img
+									width="500"
+									height="500"
+									loading="lazy"
+									src={item.category.image}
+									alt={item.name}
+									class="object-contain"
+								/>
+							</div>
 						{/snippet}
 						<div class="w-full space-y-1">
 							<Card.Header class="text-sm font-medium">{item.name}</Card.Header>
@@ -75,11 +84,15 @@
 							<Drawer.Content>
 								<div class="relative">
 									<Drawer.Close size="lg" class="absolute top-4 right-0" />
-									<img
-										class="max-h-62.5 w-full object-contain"
-										src={item.category.image}
-										alt={item.name}
-									/>
+									<div class="aspect-square h-62.5 w-full">
+										<enhanced:img
+											class="max-h-62.5 w-full object-contain object-center"
+											width="500"
+											height="500"
+											src={item.category.image}
+											alt={item.name}
+										/>
+									</div>
 								</div>
 
 								<Cart {item} />

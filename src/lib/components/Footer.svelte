@@ -37,12 +37,12 @@
 
 			<div class="grid grid-cols-2 gap-3 text-xs">
 				<div>
-					{#each businessDetails.workingHours as workingHours}
+					{#each businessDetails.workingHours as workingHours, index (index)}
 						<p class="text-end font-medium">{workingHours.days}:</p>
 					{/each}
 				</div>
 				<div>
-					{#each businessDetails.workingHours as workingHours}
+					{#each businessDetails.workingHours as workingHours, index (index)}
 						<p class="text-start last:font-semibold">{workingHours.hours}</p>
 					{/each}
 				</div>

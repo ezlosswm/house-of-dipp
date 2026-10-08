@@ -1,13 +1,15 @@
-import burger from '$lib/assets/burger.webp';
-import nachos from '$lib/assets/nachos.webp';
-import wings from '$lib/assets/wings.webp';
-import fries from '$lib/assets/fries.webp';
-import fingers from '$lib/assets/fingers.webp';
-import friedchicken from '$lib/assets/friedchicken.webp';
-import tortas from '$lib/assets/tortas.webp';
-import cheesedip from '$lib/assets/cheesedip.webp';
-import botana from '$lib/assets/botana.webp';
-import chickenceviche from '$lib/assets/botana.webp';
+export const burger = 'images/burger.webp';
+export const nachos = 'images/nachos.webp';
+export const wings = 'images/wings.webp';
+export const fries = 'images/fries.webp';
+export const fingers = 'images/fingers.webp';
+export const friedchicken = 'images/friedchicken.webp';
+export const tortas = 'images/tortas.webp';
+export const cheesedip = 'images/cheesedip.webp';
+export const botana = 'images/botana.webp';
+export const chickenceviche = 'images/botana.webp';
+export const houseofdipp = 'images/houseofdipp.webp';
+export const combomeal = 'images/combo-meal.webp';
 
 export const menuCategory: FoodCategory[] = [
 	{

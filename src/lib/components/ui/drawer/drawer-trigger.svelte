@@ -10,6 +10,7 @@
 
 <Button
 	onclick={() => sheet.show()}
+	type="button"
 	data-slot="drawer-button"
 	class={cn('w-full', className)}
 	{variant}

@@ -11,15 +11,20 @@
 	let { value = $bindable('') } = $props();
 </script>
 
-{#if !visible}
-	<Button onclick={() => (visible = !visible)} variant="ghost" size="icon">
+<Button
+	type="button"
+	aria-label={visible ? 'Close menu search' : 'Open menu search'}
+	aria-expanded={visible}
+	onclick={() => (visible = !visible)}
+	variant="ghost"
+	size="icon"
+>
+	{#if !visible}
 		<MagnifyingGlassIcon />
-	</Button>
-{:else}
-	<Button onclick={() => (visible = !visible)} variant="ghost" size="icon">
+	{:else}
 		<XIcon />
-	</Button>
-{/if}
+	{/if}
+</Button>
 
 {#if visible}
 	<div
@@ -27,19 +32,16 @@
 		out:fly={{ y: -10, duration: 450, easing: cubicOut }}
 		class="relative w-full rounded-xl border border-border bg-white p-3 hover:border-border-strong"
 	>
-		<div class="pointer-events-none absolute top-1/2 -translate-y-1/2 pl-1">
+		<div aria-hidden="true" class="pointer-events-none absolute top-1/2 -translate-y-1/2 pl-1">
 			<MagnifyingGlassIcon />
 		</div>
 
 		<input
 			bind:value
 			class="w-full pr-16 pl-6 text-sm outline-none"
+			aria-label="Search menu"
 			type="text"
-			placeholder="Burger, fried chicken, fries.."
+			placeholder="Burger, fried chicken, fries..."
 		/>
-
-		<div class="absolute top-1/2 right-0 -translate-y-1/2 pr-1.5">
-			<Button>Search</Button>
-		</div>
 	</div>
 {/if}

@@ -10,11 +10,18 @@
 </script>
 
 <div class="flex h-full flex-col justify-between">
-	<div>
+	<div class="space-y-3">
 		{#each cart.lines() as cartItem (cartItem.item.name)}
-			<div class="flex items-center justify-between gap-2">
-				<div class="flex items-center gap-1">
-					<img class="size-25" src={cartItem.item.category.image} alt={cartItem.item.name} />
+			<div class="flex items-center justify-between gap-4">
+				<div class="flex items-center gap-2">
+					<div class="aspect-square size-25">
+						<enhanced:img
+							width="100"
+							height="100"
+							src={cartItem.item.category.image}
+							alt={cartItem.item.name}
+						/>
+					</div>
 					<div class="space-y-3">
 						<div class="space-y-1">
 							<h4>{cartItem.item.name}</h4>
@@ -33,6 +40,7 @@
 						</div>
 						<div class="flex items-center gap-2">
 							<Button
+								type="button"
 								onclick={() => cart.decrease(cartItem.item.id)}
 								variant="outline"
 								size="icon-sm"
@@ -45,6 +53,7 @@
 							</p>
 
 							<Button
+								type="button"
 								onclick={() => cart.increment(cartItem.item.id)}
 								variant="outline"
 								size="icon-sm"
@@ -73,9 +82,9 @@
 					<h4 class="text-foreground">Add On</h4>
 
 					<div class="text-xs">
-						{#each cart.lines() as addOns}
+						{#each cart.lines() as addOns, index (index)}
 							<div class="space-y-1">
-								{#each addOns.addOnOptions as addOn}
+								{#each addOns.addOnOptions as addOn, index (index)}
 									<p>{addOn.name}</p>
 								{/each}
 							</div>
@@ -84,6 +93,7 @@
 				</div>
 			</div>
 			<Button
+				type="button"
 				onclick={() => {
 					cart.clear();
 				}}

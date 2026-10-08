@@ -12,6 +12,7 @@
 
 <Button
 	onclick={() => sheet.close()}
+	type="button"
 	data-slot="drawer-button"
 	variant="ghost"
 	class={cn('', className)}
